@@ -1,0 +1,21 @@
+{% load static %}
+<div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <a href="{% url 'get_recipes:index' %}" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img src="{% static 'image/logo3.png' %}" class="d-inline-block align-top" alt="">
+      <span class="fs-4">Recipe assistant</span>
+    </a>
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="{% url 'get_recipes:index' %}" class="nav-link active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="{% url 'get_recipes:profile' request.user.id %}" class="nav-link">Profile</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
+      {% if user.is_authenticated %}
+      <li class="nav-item"><a href="{% url 'users:logout' %}" class="nav-link">logout</a></li>
+      {% else %}
+      <li class="nav-item"><a href="{% url 'users:signup' %}" class="nav-link">SignUp</a></li>
+      <li class="nav-item"><a href="{% url 'users:login' %}" class="nav-link">login</a></li>
+      {% endif %}
+    </ul>
+  </header>
+</div>

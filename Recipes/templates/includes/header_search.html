@@ -1,0 +1,47 @@
+
+{% load static %}
+
+
+<div class="container">
+  <header class="p-3 mb-3 border-bottom">
+    <form method="GET" action="{% url 'get_recipes:list_recipes' %}" class="ms-0 align-items-start">
+      <div class="input-group">
+        <input type="search" name="ingredients" class="form-control form-control-lg rounded-3" placeholder="Enter the ingredients, for example: potatoes, onions, carrots" aria-label="Search" style="font-size: 18px; font-weight: 600; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+        <button type="submit" class="btn btn-secondary btn-lg ms-3 rounded-3" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">Get recipes</button>
+      </div>
+    </form>
+  </header>
+</div>
+
+
+
+
+<!--<div class="container">
+  <header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-end justify-content-lg-end">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+          <input type="search" class="form-control" placeholder="Enter the ingredients for the recipe: garlic,onion,potato" aria-label="Search">
+        </form>
+        <a href="{% url 'get_recipes:list_recipes' %}" class="nav-link active btn btn-secondary" aria-current="page" style="background-color: #808080; width: 120px; height: 42px; margin-right: 0;">Get recipes</a>
+      </div>
+    </div>
+  </header>
+</div>-->
+
+
+
+<!--<div class="container">
+  <header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="row align-items-center">
+        <form method="GET" action="{% url 'get_recipes:list_recipes' %}" class="col-lg-8">
+          <div class="input-group">
+            <input type="search" name="ingredients" class="form-control form-control-lg rounded-3" placeholder="Enter the ingredients, for example: potatoes, onions, carrots" aria-label="Search" style="font-size: 18px; font-weight: 600; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+            <button type="submit" class="btn btn-secondary btn-lg ms-3 rounded-3" style="border-top-left-radius: 0; border-bottom-left-radius: 0;">Get recipes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </header>
+</div>-->

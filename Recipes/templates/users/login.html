@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title> Signin </title>
+{% endblock  %}
+
+{% block main %}
+
+<div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content rounded-5 shadow">
+      <div class="modal-header p-5 pb-4 border-bottom-0">
+        <!-- <h5 class="modal-title">Modal title</h5> -->
+        <h2 class="fw-bold mb-0">Enter to the profile</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-5 pt-0">
+        <form method="post">
+          {% csrf_token %}
+          <div class="form-floating mb-3">
+              {{ form.username }}
+              <label for="{{ form.username.id_for_label }}">Username</label>
+          </div>
+          <div class="form-floating mb-3">
+              {{ form.password }}
+              <label for="{{ form.password.id_for_label }}">Password</label>
+          </div>
+          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Log in</button>
+        </form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+ <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Log in</button>
+  </form>
+
+
+{% endblock %}

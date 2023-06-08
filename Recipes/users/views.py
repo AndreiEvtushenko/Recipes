@@ -8,15 +8,9 @@ from .forms import CreationForm
 
 
 class SignUpView(CreateView):
+    template_name = 'users/signup.html'
     form_class = CreationForm
     success_url = reverse_lazy('get_recipes:index')
-    template_name = 'users/signup.html'
-
-    def form_valid(self, form):
-        response = super().form_valid(form)
-        self.object.set_password(form.cleaned_data.get('password'))
-        self.object.save()
-        return response
 
 
 def logout_view(request):
@@ -28,11 +22,4 @@ class MyLoginView(LoginView):
     template_name = 'users/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('get_recipes:index', urlconf=self.request.urlconf)
-
-class MyLoginView(LoginView):
-    template_name = 'users/login.html'
-
-    def get_success_url(self):
-        next_url = self.request.GET.get('next', None)
-        return next_url or reverse_lazy('get_recipes:index')
+        return reverse_lazy('get_recipes:index')

@@ -5,17 +5,66 @@
       <img src="{% static 'image/logo3.png' %}" class="d-inline-block align-top" alt="">
       <span class="fs-4">Recipe assistant</span>
     </a>
+    {% with request.resolver_match.view_name as view_name %}
     <ul class="nav nav-pills">
-      <li class="nav-item"><a href="{% url 'get_recipes:index' %}" class="nav-link active" aria-current="page">Home</a></li>
-      <li class="nav-item"><a href="{% url 'get_recipes:profile' request.user.id %}" class="nav-link">Profile</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Help</a></li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'get_recipes:index' %} active {% endif %}"
+          href="{% url 'get_recipes:index' %}">
+          Home
+        </a>
+      </li>
+
       {% if user.is_authenticated %}
-      <li class="nav-item"><a href="{% url 'users:logout' %}" class="nav-link">logout</a></li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'get_recipes:profile' %} active {% endif %}"
+          href="{% url 'get_recipes:profile' request.user.id %}">
+          Profile
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'users:logout' %} active {% endif %}"
+          href="{% url 'users:logout' %}">
+          logout
+        </a>
+      </li>
+
       {% else %}
-      <li class="nav-item"><a href="{% url 'users:signup' %}" class="nav-link">SignUp</a></li>
-      <li class="nav-item"><a href="{% url 'users:login' %}" class="nav-link">login</a></li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'users:signup' %} active {% endif %}"
+          href="{% url 'users:signup' %}">
+          SignUp
+        </a>
+      </li>
+
+
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'users:login' %} active {% endif %}"
+          href="{% url 'users:login' %}">
+        login
+        </a>
+      </li>
+
       {% endif %}
+
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'about:aboutapp' %} active {% endif %}"
+          href="{% url 'about:aboutapp' %}">
+          About
+        </a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link {% if view_name  == 'about:help' %} active {% endif %}"
+          href="{% url 'about:help' %}">
+          Help
+        </a>
+      </li>
+
     </ul>
+    {% endwith %}
   </header>
 </div>

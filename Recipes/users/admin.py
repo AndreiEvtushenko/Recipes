@@ -1,19 +1,18 @@
 from django.contrib import admin
-from users.models import CustomUser
+from django.contrib.auth import get_user_model
 
-admin.site.register(CustomUser)
+User = get_user_model()
 
 
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = (
-        'name',
-        'surname',
+        'first_name',
         'username',
         'email',
         'telegram',
         'image',
     )
-    list_editable = ('name',)
+    list_editable = ('first_name',)
     search_fields = ('username',)
     list_filter = ('pub_date',)
     empty_value_display = '-пусто-'

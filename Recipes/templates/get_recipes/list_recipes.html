@@ -17,9 +17,9 @@
             <!--<div class="mb-1 text-muted">Cooking time {{ recipe.id }}</div>-->
             <p class="card-text mb-auto">{{ recipe.instructions| safe |truncatechars:60 }}</p>
             <div class="d-flex align-items-center">
-                <a href="{% url 'get_recipes:recipe_ditail' recipe.id %}" class="stretched-link">Recipe ditail</a>&nbsp;&nbsp;
+                <a href="{% url 'get_recipes:recipe_detail' recipe.id %}" class="stretched-link">Recipe ditail</a>&nbsp;&nbsp;
                 {% if user.is_authenticated %}
-                <a href="{% url 'get_recipes:recipe_ditail' recipe.id %}" class="stretched-link">Save recipe</a>
+                <a href="{% url 'get_recipes:recipe_detail' recipe.id %}" class="stretched-link">Save recipe</a>
                 {% endif %}
             </div>
           </div>

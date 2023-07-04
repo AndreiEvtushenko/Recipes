@@ -5,7 +5,7 @@ from django.shortcuts import redirect
 
 from .forms import HelpForm
 from .models import HelpFormModel
-from send_message.views import send_message
+from send_message.views import send_email_message
 
 
 class AboutAppView(TemplateView):
@@ -20,13 +20,17 @@ class HelpView(CreateView):
 
 def save_help_form(request):
     if request.method == 'POST':
-        form = HelpFormModel(request.POST or None)
+        form = HelpFormModel(request.POST)
+
         if form.is_valid():
             name = form.cleaned_data['name']
             text = form.cleaned_data['text']
             email = form.cleaned_data['email']
             form.save()
-            send_message(name, text, email)
+            send_email_message(name, text, email)
+            return redirect('get_recipes:index')
+
     else:
         form = HelpFormModel()
-    return redirect('get_recipes:index')
+
+    return redirect('about:help')

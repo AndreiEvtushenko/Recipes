@@ -13,5 +13,4 @@ urlpatterns = [
          views.save_recipe, name='save_recipe'
          ),
     path('profile/<user_id>/', views.profile, name='profile'),
-    # path('about/', views.about, name='about'),
 ]

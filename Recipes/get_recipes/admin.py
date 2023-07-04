@@ -17,7 +17,7 @@ class RecipeAdmin(admin.ModelAdmin):
         'cooking_steps',
         'sourceUrl',
     )
-    # list_editable = ('name',)
+
     search_fields = ('name',)
     list_filter = ('pub_date',)
     empty_value_display = '-пусто-'

@@ -1,10 +1,17 @@
 import ast
+import os
 
 import requests
 from django.core.cache import cache
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from get_recipes.models import Recipe
+
+from dotenv import load_dotenv
+
+load_dotenv()
+
+X_API_KEY = os.getenv('X_API_KEY')
 
 
 def index(request):
@@ -44,8 +51,8 @@ def list_recipes(request):
     template = 'get_recipes/list_recipes.html'
     context = {
         'recipes': recipes,
-        }
-    
+    }
+
     return render(request, template, context)
 
 
@@ -108,7 +115,7 @@ def save_recipe(request, recipe_id):
     recipe = cache.get(recipe_id)
 
     if not recipe:
-        headers = {'X-Api-Key': '5062411b50aa47538307dd658b702b5e'}
+        headers = {'X-Api-Key': X_API_KEY}
         response = requests.get(
             f'https://api.spoonacular.com/recipes/{recipe_id}/'
             f'information?includeNutrition=false',
@@ -174,7 +181,7 @@ def get_random_recipes(request):
     recipes = cache.get('recipes')
 
     if not recipes:
-        headers = {'X-Api-Key': '5062411b50aa47538307dd658b702b5e'}
+        headers = {'X-Api-Key': X_API_KEY}
         response = requests.get(
             'https://api.spoonacular.com/recipes/random?number=8',
             headers=headers
@@ -198,7 +205,7 @@ def get_recipe(request, recipe_id):
     recipe = cache.get(recipe_id)
 
     if not recipe:
-        headers = {'X-Api-Key': '5062411b50aa47538307dd658b702b5e'}
+        headers = {'X-Api-Key': X_API_KEY}
         response = requests.get(
             f'https://api.spoonacular.com/recipes/{recipe_id}/'
             f'information?includeNutrition=false',
@@ -223,7 +230,7 @@ def get_recipes_by_ingridients(request, ingredients):
     recipes = cache.get(ingredients)
 
     if not recipes:
-        headers = {'X-Api-Key': '5062411b50aa47538307dd658b702b5e'}
+        headers = {'X-Api-Key': X_API_KEY}
         params = {'ingredients': ingredients, 'number': 10, 'ranking': 1}
         response = requests.get(
             'https://api.spoonacular.com/recipes/findByIngredients',
